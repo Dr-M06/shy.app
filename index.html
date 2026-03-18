@@ -119,6 +119,58 @@
       gap: 8px;
     }
 
+    .nav-toggle {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: rgba(26, 34, 56, 0.75);
+      color: var(--text);
+      cursor: pointer;
+      padding: 0;
+    }
+
+    .nav-toggle-line {
+      width: 17px;
+      height: 2px;
+      border-radius: 2px;
+      background: var(--text);
+      position: relative;
+      transition: background 0.18s ease;
+    }
+
+    .nav-toggle-line::before,
+    .nav-toggle-line::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      width: 17px;
+      height: 2px;
+      border-radius: 2px;
+      background: var(--text);
+      transition: transform 0.18s ease, top 0.18s ease, opacity 0.16s ease;
+    }
+
+    .nav-toggle-line::before { top: -6px; }
+    .nav-toggle-line::after { top: 6px; }
+
+    .nav-toggle[aria-expanded="true"] .nav-toggle-line {
+      background: transparent;
+    }
+
+    .nav-toggle[aria-expanded="true"] .nav-toggle-line::before {
+      top: 0;
+      transform: rotate(45deg);
+    }
+
+    .nav-toggle[aria-expanded="true"] .nav-toggle-line::after {
+      top: 0;
+      transform: rotate(-45deg);
+    }
+
     .nav a {
       text-decoration: none;
       color: var(--muted);
@@ -258,6 +310,31 @@
       color: #dce5ff;
     }
 
+    .legal-scroll-card {
+      height: 640px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .legal-scroll-content {
+      overflow-y: auto;
+      padding-right: 6px;
+    }
+
+    .legal-scroll-content::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .legal-scroll-content::-webkit-scrollbar-thumb {
+      border-radius: 8px;
+      background: rgba(173, 189, 222, 0.26);
+    }
+
+    .legal-scroll-content::-webkit-scrollbar-track {
+      background: rgba(173, 189, 222, 0.08);
+      border-radius: 8px;
+    }
+
     .section p,
     .section li {
       color: var(--muted);
@@ -301,6 +378,39 @@
       }
     }
 
+    @media (max-width: 859px) {
+      .legal-scroll-card {
+        height: 520px;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .topbar-inner {
+        align-items: center;
+        flex-wrap: wrap;
+      }
+
+      .nav-toggle {
+        display: inline-flex;
+        margin-left: auto;
+      }
+
+      .nav {
+        width: 100%;
+        display: none;
+        margin-top: 10px;
+        padding: 10px;
+        border-radius: 12px;
+        border: 1px solid var(--border);
+        background: rgba(20, 26, 43, 0.94);
+        justify-content: flex-start;
+      }
+
+      .nav.open {
+        display: flex;
+      }
+    }
+
     .footer {
       margin-top: 18px;
       text-align: center;
@@ -317,7 +427,16 @@
         <img src="assets/icon.png" alt="shy logo" />
         <span>shy</span>
       </a>
-      <nav class="nav" aria-label="Section links">
+      <button
+        class="nav-toggle"
+        type="button"
+        aria-label="Open navigation menu"
+        aria-expanded="false"
+        aria-controls="site-nav"
+      >
+        <span class="nav-toggle-line"></span>
+      </button>
+      <nav class="nav" id="site-nav" aria-label="Section links">
         <a href="#top">home</a>
         <a href="#about">about</a>
         <a href="#privacy">privacy</a>
@@ -376,125 +495,129 @@
     </section>
 
     <div class="grid-2">
-      <section id="privacy" class="section">
+      <section id="privacy" class="section legal-scroll-card">
         <h2>Privacy Policy</h2>
-        <h3>1. Information we collect</h3>
-        <ul>
-          <li>Anonymous account identifiers generated through authentication services</li>
-          <li>Content you submit, including posts, comments, and reports</li>
-          <li>Operational metadata (timestamps, basic event metrics, moderation signals)</li>
-          <li>Device/app details needed for reliability, abuse prevention, and notifications</li>
-          <li>Purchase entitlement data used to verify paid features (if applicable)</li>
-        </ul>
+        <div class="legal-scroll-content">
+          <h3>1. Information we collect</h3>
+          <ul>
+            <li>Anonymous account identifiers generated through authentication services</li>
+            <li>Content you submit, including posts, comments, and reports</li>
+            <li>Operational metadata (timestamps, basic event metrics, moderation signals)</li>
+            <li>Device/app details needed for reliability, abuse prevention, and notifications</li>
+            <li>Purchase entitlement data used to verify paid features (if applicable)</li>
+          </ul>
 
-        <h3>2. How we use information</h3>
-        <ul>
-          <li>Provide and maintain core app functionality</li>
-          <li>Enforce age-gating and community safety requirements</li>
-          <li>Detect abuse, spam, fraud, and policy violations</li>
-          <li>Improve performance, quality, and feature reliability</li>
-          <li>Support subscriptions and restore purchases when requested</li>
-        </ul>
+          <h3>2. How we use information</h3>
+          <ul>
+            <li>Provide and maintain core app functionality</li>
+            <li>Enforce age-gating and community safety requirements</li>
+            <li>Detect abuse, spam, fraud, and policy violations</li>
+            <li>Improve performance, quality, and feature reliability</li>
+            <li>Support subscriptions and restore purchases when requested</li>
+          </ul>
 
-        <h3>3. Sharing and disclosure</h3>
-        <p>
-          We do not sell personal information. We may share information with infrastructure and
-          analytics/payment providers that process data for service delivery. We may also disclose
-          information when required by law or to protect users, the public, or our rights.
-        </p>
+          <h3>3. Sharing and disclosure</h3>
+          <p>
+            We do not sell personal information. We may share information with infrastructure and
+            analytics/payment providers that process data for service delivery. We may also disclose
+            information when required by law or to protect users, the public, or our rights.
+          </p>
 
-        <h3>4. Retention</h3>
-        <p>
-          We retain information for as long as needed to operate the service, meet legal
-          obligations, resolve disputes, and enforce policies. Moderation records may be kept for
-          safety and abuse prevention.
-        </p>
+          <h3>4. Retention</h3>
+          <p>
+            We retain information for as long as needed to operate the service, meet legal
+            obligations, resolve disputes, and enforce policies. Moderation records may be kept for
+            safety and abuse prevention.
+          </p>
 
-        <h3>5. Your controls</h3>
-        <ul>
-          <li>Manage notification settings inside the app</li>
-          <li>Delete your own content where deletion controls are provided</li>
-          <li>Clear local app data from in-app settings</li>
-          <li>Contact us for privacy questions or legal requests</li>
-        </ul>
+          <h3>5. Your controls</h3>
+          <ul>
+            <li>Manage notification settings inside the app</li>
+            <li>Delete your own content where deletion controls are provided</li>
+            <li>Clear local app data from in-app settings</li>
+            <li>Contact us for privacy questions or legal requests</li>
+          </ul>
 
-        <h3>6. Children and minimum age</h3>
-        <p>
-          shy is not intended for children under 13. We may suspend or restrict accounts that do
-          not meet minimum age requirements under our policy or applicable law.
-        </p>
+          <h3>6. Children and minimum age</h3>
+          <p>
+            shy is not intended for children under 13. We may suspend or restrict accounts that do
+            not meet minimum age requirements under our policy or applicable law.
+          </p>
 
-        <h3>7. Policy updates</h3>
-        <p>
-          We may update this Privacy Policy from time to time. Continued use after updates means
-          you accept the revised policy.
-        </p>
+          <h3>7. Policy updates</h3>
+          <p>
+            We may update this Privacy Policy from time to time. Continued use after updates means
+            you accept the revised policy.
+          </p>
+        </div>
       </section>
 
-      <section id="terms" class="section">
+      <section id="terms" class="section legal-scroll-card">
         <h2>Terms of Service</h2>
-        <h3>1. Acceptance of terms</h3>
-        <p>
-          By downloading, accessing, or using shy, you agree to these Terms of Service and all
-          applicable laws and platform policies.
-        </p>
+        <div class="legal-scroll-content">
+          <h3>1. Acceptance of terms</h3>
+          <p>
+            By downloading, accessing, or using shy, you agree to these Terms of Service and all
+            applicable laws and platform policies.
+          </p>
 
-        <h3>2. Eligibility</h3>
-        <ul>
-          <li>You must meet the minimum age requirement and legal eligibility in your region</li>
-          <li>You are responsible for accuracy of required account and age-gate inputs</li>
-        </ul>
+          <h3>2. Eligibility</h3>
+          <ul>
+            <li>You must meet the minimum age requirement and legal eligibility in your region</li>
+            <li>You are responsible for accuracy of required account and age-gate inputs</li>
+          </ul>
 
-        <h3>3. User content and conduct</h3>
-        <ul>
-          <li>You are responsible for content you submit</li>
-          <li>
-            You must not post illegal, threatening, abusive, hateful, sexually exploitative, or
-            harmful content
-          </li>
-          <li>You must not publish private personal data, contact details, or doxxing content</li>
-          <li>You must not use shy to advertise scams, fraud, or prohibited commercial activity</li>
-        </ul>
+          <h3>3. User content and conduct</h3>
+          <ul>
+            <li>You are responsible for content you submit</li>
+            <li>
+              You must not post illegal, threatening, abusive, hateful, sexually exploitative, or
+              harmful content
+            </li>
+            <li>You must not publish private personal data, contact details, or doxxing content</li>
+            <li>You must not use shy to advertise scams, fraud, or prohibited commercial activity</li>
+          </ul>
 
-        <h3>4. Moderation and enforcement</h3>
-        <p>
-          We may review, hide, remove, or restrict content or account access when needed to enforce
-          community rules, protect users, investigate abuse, or comply with legal requests.
-        </p>
+          <h3>4. Moderation and enforcement</h3>
+          <p>
+            We may review, hide, remove, or restrict content or account access when needed to enforce
+            community rules, protect users, investigate abuse, or comply with legal requests.
+          </p>
 
-        <h3>5. Paid features and billing</h3>
-        <p>
-          Subscriptions are billed and managed by the Apple App Store or Google Play. Billing,
-          cancellation, renewal, and refund terms are governed by the applicable store.
-        </p>
+          <h3>5. Paid features and billing</h3>
+          <p>
+            Subscriptions are billed and managed by the Apple App Store or Google Play. Billing,
+            cancellation, renewal, and refund terms are governed by the applicable store.
+          </p>
 
-        <h3>6. Service availability</h3>
-        <p>
-          shy is provided on an "as is" and "as available" basis. We may modify, suspend, or
-          discontinue features at any time without guaranteed uninterrupted operation.
-        </p>
+          <h3>6. Service availability</h3>
+          <p>
+            shy is provided on an "as is" and "as available" basis. We may modify, suspend, or
+            discontinue features at any time without guaranteed uninterrupted operation.
+          </p>
 
-        <h3>7. Limitation of liability</h3>
-        <p>
-          To the maximum extent permitted by law, shy and its operators are not liable for
-          indirect, incidental, special, consequential, or punitive damages arising from use or
-          inability to use the service.
-        </p>
+          <h3>7. Limitation of liability</h3>
+          <p>
+            To the maximum extent permitted by law, shy and its operators are not liable for
+            indirect, incidental, special, consequential, or punitive damages arising from use or
+            inability to use the service.
+          </p>
 
-        <h3>8. Termination</h3>
-        <p>
-          We may suspend or terminate access for violations of these Terms, safety abuse, legal
-          risk, fraud, or harmful platform behavior.
-        </p>
+          <h3>8. Termination</h3>
+          <p>
+            We may suspend or terminate access for violations of these Terms, safety abuse, legal
+            risk, fraud, or harmful platform behavior.
+          </p>
 
-        <h3>9. Changes to terms</h3>
-        <p>
-          We may revise these Terms periodically. Continued use of shy after changes means you
-          accept the updated Terms.
-        </p>
+          <h3>9. Changes to terms</h3>
+          <p>
+            We may revise these Terms periodically. Continued use of shy after changes means you
+            accept the updated Terms.
+          </p>
 
-        <div class="legal-note">
-          If you do not agree to these Terms, do not use shy.
+          <div class="legal-note">
+            If you do not agree to these Terms, do not use shy.
+          </div>
         </div>
       </section>
     </div>
@@ -516,5 +639,33 @@
       shy
     </div>
   </main>
+  <script>
+    (function () {
+      var button = document.querySelector('.nav-toggle');
+      var nav = document.getElementById('site-nav');
+      if (!button || !nav) return;
+
+      var closeNav = function () {
+        button.setAttribute('aria-expanded', 'false');
+        nav.classList.remove('open');
+      };
+
+      button.addEventListener('click', function () {
+        var expanded = button.getAttribute('aria-expanded') === 'true';
+        button.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+        nav.classList.toggle('open', !expanded);
+      });
+
+      nav.querySelectorAll('a').forEach(function (link) {
+        link.addEventListener('click', closeNav);
+      });
+
+      window.addEventListener('resize', function () {
+        if (window.innerWidth > 760) {
+          closeNav();
+        }
+      });
+    })();
+  </script>
 </body>
 </html>
