@@ -1,0 +1,520 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>shy - official website</title>
+  <meta
+    name="description"
+    content="Official shy website - anonymous social app for honest expression. About, Privacy Policy, Terms of Service, and support."
+  />
+  <meta name="theme-color" content="#080810" />
+  <meta property="og:title" content="shy - official website" />
+  <meta
+    property="og:description"
+    content="Anonymous, honest, and built for safety. Learn about shy, read our privacy policy and terms, and contact support."
+  />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="assets/icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/icon.png" />
+  <style>
+    :root {
+      --bg: #070910;
+      --bg-soft: #0f1320;
+      --surface: #141a2b;
+      --surface-2: #1a2238;
+      --text: #edf2ff;
+      --muted: #a0abc4;
+      --dim: #7d88a4;
+      --accent: #c8f135;
+      --border: rgba(173, 189, 222, 0.16);
+      --danger: #f97373;
+      --radius-lg: 18px;
+      --radius-md: 14px;
+      --radius-sm: 10px;
+      --shadow: 0 14px 44px rgba(0, 0, 0, 0.34);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background:
+        radial-gradient(circle at 8% -12%, rgba(200, 241, 53, 0.12), transparent 38%),
+        radial-gradient(circle at 88% 4%, rgba(123, 97, 255, 0.14), transparent 34%),
+        linear-gradient(180deg, var(--bg) 0%, #090d1a 100%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      color: var(--accent);
+    }
+
+    .container {
+      width: min(1040px, 100%);
+      margin: 0 auto;
+      padding: 0 16px 36px;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      border-bottom: 1px solid rgba(173, 189, 222, 0.12);
+      background: rgba(7, 9, 16, 0.84);
+      backdrop-filter: blur(10px);
+    }
+
+    .topbar-inner {
+      width: min(1040px, 100%);
+      margin: 0 auto;
+      padding: 12px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .brand img {
+      width: 36px;
+      height: 36px;
+      border-radius: 9px;
+      display: block;
+      flex-shrink: 0;
+      object-fit: contain;
+      object-position: center;
+      padding: 0;
+      border: 1px solid var(--border);
+      background: rgba(15, 19, 34, 0.9);
+    }
+
+    .brand span {
+      font-size: 28px;
+      line-height: 1;
+      font-weight: 800;
+      color: var(--accent);
+      letter-spacing: -0.8px;
+    }
+
+    .nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 8px;
+    }
+
+    .nav a {
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 13px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(26, 34, 56, 0.6);
+      padding: 7px 12px;
+    }
+
+    .nav a:hover {
+      border-color: rgba(200, 241, 53, 0.7);
+      color: var(--text);
+    }
+
+    .hero {
+      margin-top: 18px;
+      padding: 20px;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      background:
+        linear-gradient(155deg, rgba(200, 241, 53, 0.1), transparent 34%),
+        linear-gradient(180deg, rgba(26, 34, 56, 0.9), rgba(20, 26, 43, 0.95));
+    }
+
+    .hero-top {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+
+    .hero-top img {
+      width: 50px;
+      height: 50px;
+      border-radius: 12px;
+      display: block;
+      flex-shrink: 0;
+      object-fit: contain;
+      object-position: center;
+      padding: 0;
+      border: 1px solid var(--border);
+      background: rgba(15, 19, 34, 0.9);
+    }
+
+    .hero-kicker {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      border: 1px solid rgba(200, 241, 53, 0.46);
+      background: rgba(200, 241, 53, 0.14);
+      color: var(--accent);
+      font-size: 11px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      font-weight: 700;
+      padding: 4px 10px;
+      margin-bottom: 8px;
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-size: clamp(26px, 5.4vw, 39px);
+      line-height: 1.15;
+      letter-spacing: -0.6px;
+    }
+
+    .hero p {
+      margin: 10px 0 0;
+      color: var(--muted);
+      max-width: 760px;
+      font-size: 15px;
+    }
+
+    .meta-row {
+      margin-top: 14px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .home-cards {
+      margin-top: 16px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+
+    .home-card {
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      background: rgba(20, 26, 43, 0.72);
+      padding: 12px;
+    }
+
+    .home-card h3 {
+      margin: 0 0 4px;
+      font-size: 14px;
+      color: var(--text);
+    }
+
+    .home-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .meta-pill {
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      color: var(--dim);
+      font-size: 12px;
+      padding: 5px 10px;
+      background: rgba(20, 26, 43, 0.7);
+    }
+
+    .section {
+      scroll-margin-top: 92px;
+      margin-top: 16px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+      background: linear-gradient(180deg, var(--surface) 0%, var(--surface-2) 100%);
+      padding: 18px;
+    }
+
+    .section h2 {
+      margin: 0 0 10px;
+      font-size: 23px;
+      letter-spacing: -0.3px;
+    }
+
+    .section h3 {
+      margin: 16px 0 6px;
+      font-size: 15px;
+      color: #dce5ff;
+    }
+
+    .section p,
+    .section li {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .section ul {
+      margin: 8px 0 0;
+      padding-left: 20px;
+    }
+
+    .legal-note {
+      margin-top: 12px;
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(249, 115, 115, 0.35);
+      background: rgba(249, 115, 115, 0.08);
+      color: #fecaca;
+      font-size: 12px;
+    }
+
+    .muted {
+      margin-top: 12px;
+      color: var(--dim);
+      font-size: 12px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    @media (min-width: 860px) {
+      .grid-2 {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .home-cards {
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+    }
+
+    .footer {
+      margin-top: 18px;
+      text-align: center;
+      color: var(--dim);
+      font-size: 12px;
+      padding: 18px 4px 6px;
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="#top" aria-label="shy home">
+        <img src="assets/icon.png" alt="shy logo" />
+        <span>shy</span>
+      </a>
+      <nav class="nav" aria-label="Section links">
+        <a href="#top">home</a>
+        <a href="#about">about</a>
+        <a href="#privacy">privacy</a>
+        <a href="#terms">terms</a>
+        <a href="#contact">contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top" class="container">
+    <section class="hero">
+      <div class="hero-top">
+        <img src="assets/icon.png" alt="shy app logo" />
+        <div>
+          <div class="hero-kicker">Official website</div>
+        </div>
+      </div>
+      <h1>shy: anonymous expression, built for safety</h1>
+      <p>
+        Welcome to the official website for shy. Learn how the app works, what we stand for, and
+        review our Privacy Policy and Terms of Service.
+      </p>
+      <div class="meta-row">
+        <div class="meta-pill">Last updated: March 18, 2026</div>
+        <div class="meta-pill">Contact: hello@shyapp.co</div>
+      </div>
+      <div class="home-cards">
+        <article class="home-card">
+          <h3>Anonymous by design</h3>
+          <p>No public profile identity. Share honestly without social-pressure posting.</p>
+        </article>
+        <article class="home-card">
+          <h3>Community safety</h3>
+          <p>Reporting, moderation, and age-gate protections to keep conversations safer.</p>
+        </article>
+        <article class="home-card">
+          <h3>Lightweight experience</h3>
+          <p>Fast mobile UX with a focus on low-friction posting and reading.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="about" class="section">
+      <h2>About shy</h2>
+      <p>
+        shy is an anonymous social app where users share thoughts and feelings without public
+        profile identities. Our goal is to provide a lightweight, safe, and respectful space for
+        self-expression.
+      </p>
+      <h3>What we focus on</h3>
+      <ul>
+        <li>Anonymous participation by default</li>
+        <li>Safety-first moderation and reporting</li>
+        <li>Fast, low-bandwidth mobile experience</li>
+      </ul>
+    </section>
+
+    <div class="grid-2">
+      <section id="privacy" class="section">
+        <h2>Privacy Policy</h2>
+        <h3>1. Information we collect</h3>
+        <ul>
+          <li>Anonymous account identifiers generated through authentication services</li>
+          <li>Content you submit, including posts, comments, and reports</li>
+          <li>Operational metadata (timestamps, basic event metrics, moderation signals)</li>
+          <li>Device/app details needed for reliability, abuse prevention, and notifications</li>
+          <li>Purchase entitlement data used to verify paid features (if applicable)</li>
+        </ul>
+
+        <h3>2. How we use information</h3>
+        <ul>
+          <li>Provide and maintain core app functionality</li>
+          <li>Enforce age-gating and community safety requirements</li>
+          <li>Detect abuse, spam, fraud, and policy violations</li>
+          <li>Improve performance, quality, and feature reliability</li>
+          <li>Support subscriptions and restore purchases when requested</li>
+        </ul>
+
+        <h3>3. Sharing and disclosure</h3>
+        <p>
+          We do not sell personal information. We may share information with infrastructure and
+          analytics/payment providers that process data for service delivery. We may also disclose
+          information when required by law or to protect users, the public, or our rights.
+        </p>
+
+        <h3>4. Retention</h3>
+        <p>
+          We retain information for as long as needed to operate the service, meet legal
+          obligations, resolve disputes, and enforce policies. Moderation records may be kept for
+          safety and abuse prevention.
+        </p>
+
+        <h3>5. Your controls</h3>
+        <ul>
+          <li>Manage notification settings inside the app</li>
+          <li>Delete your own content where deletion controls are provided</li>
+          <li>Clear local app data from in-app settings</li>
+          <li>Contact us for privacy questions or legal requests</li>
+        </ul>
+
+        <h3>6. Children and minimum age</h3>
+        <p>
+          shy is not intended for children under 13. We may suspend or restrict accounts that do
+          not meet minimum age requirements under our policy or applicable law.
+        </p>
+
+        <h3>7. Policy updates</h3>
+        <p>
+          We may update this Privacy Policy from time to time. Continued use after updates means
+          you accept the revised policy.
+        </p>
+      </section>
+
+      <section id="terms" class="section">
+        <h2>Terms of Service</h2>
+        <h3>1. Acceptance of terms</h3>
+        <p>
+          By downloading, accessing, or using shy, you agree to these Terms of Service and all
+          applicable laws and platform policies.
+        </p>
+
+        <h3>2. Eligibility</h3>
+        <ul>
+          <li>You must meet the minimum age requirement and legal eligibility in your region</li>
+          <li>You are responsible for accuracy of required account and age-gate inputs</li>
+        </ul>
+
+        <h3>3. User content and conduct</h3>
+        <ul>
+          <li>You are responsible for content you submit</li>
+          <li>
+            You must not post illegal, threatening, abusive, hateful, sexually exploitative, or
+            harmful content
+          </li>
+          <li>You must not publish private personal data, contact details, or doxxing content</li>
+          <li>You must not use shy to advertise scams, fraud, or prohibited commercial activity</li>
+        </ul>
+
+        <h3>4. Moderation and enforcement</h3>
+        <p>
+          We may review, hide, remove, or restrict content or account access when needed to enforce
+          community rules, protect users, investigate abuse, or comply with legal requests.
+        </p>
+
+        <h3>5. Paid features and billing</h3>
+        <p>
+          Subscriptions are billed and managed by the Apple App Store or Google Play. Billing,
+          cancellation, renewal, and refund terms are governed by the applicable store.
+        </p>
+
+        <h3>6. Service availability</h3>
+        <p>
+          shy is provided on an "as is" and "as available" basis. We may modify, suspend, or
+          discontinue features at any time without guaranteed uninterrupted operation.
+        </p>
+
+        <h3>7. Limitation of liability</h3>
+        <p>
+          To the maximum extent permitted by law, shy and its operators are not liable for
+          indirect, incidental, special, consequential, or punitive damages arising from use or
+          inability to use the service.
+        </p>
+
+        <h3>8. Termination</h3>
+        <p>
+          We may suspend or terminate access for violations of these Terms, safety abuse, legal
+          risk, fraud, or harmful platform behavior.
+        </p>
+
+        <h3>9. Changes to terms</h3>
+        <p>
+          We may revise these Terms periodically. Continued use of shy after changes means you
+          accept the updated Terms.
+        </p>
+
+        <div class="legal-note">
+          If you do not agree to these Terms, do not use shy.
+        </div>
+      </section>
+    </div>
+
+    <section id="contact" class="section">
+      <h2>Contact</h2>
+      <p>If you need support or have legal/privacy requests, contact us:</p>
+      <ul>
+        <li>Email: <a href="mailto:hello@shyapp.co">hello@shyapp.co</a></li>
+        <li>Website: <a href="https://shyapp.co">https://shyapp.co</a></li>
+      </ul>
+      <p class="muted">
+        For verified legal notices, include your full name, jurisdiction, and detailed request in
+        your email.
+      </p>
+    </section>
+
+    <div class="footer">
+      shy
+    </div>
+  </main>
+</body>
+</html>
